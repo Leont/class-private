@@ -1,7 +1,8 @@
 #!perl -T
 
 use strict;
-use Test::More tests => 3;
+use Test::More tests => 5;
+use Test::NoWarnings;
 
 use Class::Private;
 
@@ -24,4 +25,5 @@ $foo->{bar} = 2;
 
 package main;
 
-is($foo->{bar}, 1, '$foo->{var} should be 1 in main');
+is($foo->{bar}, 1, '$foo->{bar} should be 1 in main');
+is($foo->{'Bar/bar'}, 2, '$foo->{\'Bar/bar\'} should be 2');

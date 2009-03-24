@@ -2,27 +2,11 @@ package Class::Private;
 
 use strict;
 use warnings;
-use Scalar::Util qw/refaddr/;
+use base 'DynaLoader';
 
 our $VERSION = '0.01';
 
-my %vars;
-
-sub new {
-	my $class = shift;
-	return bless {}, $class;
-}
-
-use overload '%{}' => sub {
-	my $self = shift;
-	return $vars{ refaddr($self) }{ scalar caller } ||= {};
-};
-
-sub DESTROY {
-	my $self = shift;
-	delete $vars{ refaddr($self) };
-	return;
-}
+bootstrap Class::Private $VERSION;
 
 1;    # End of Class::Private
 
@@ -30,7 +14,7 @@ __END__
 
 =head1 NAME
 
-Class::Private - The great new Class::Private!
+Class::Private - Private hashes for your objects
 
 =head1 VERSION
 
@@ -38,24 +22,34 @@ Version 0.01
 
 =head1 SYNOPSIS
 
-Quick summary of what the module does.
+	package Your::Class;
+	use Class::Private;
+	sub new {
+		my $class = shift;
+		my $self = Class::Private->new();
+		$self->{foo} = 'bar';
+		return bless $self, $class;
+	}
 
-Perhaps a little code snippet.
+	package main;
 
-    use Class::Private;
+	my $object = Your::Class->new;
 
-    my $foo = Class::Private->new();
-    ...
+	# This will not affect the internal value
+	$object->{foo} = 'quz';
 
-=head1 EXPORT
+	# This will
+	$object->{'Your::Class/foo'} = 'quz';
 
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
+=head1 DESCRIPTION
 
-=head1 FUNCTIONS
+This module provides some level of encapsulation around hashrefs for objects. It does this by transforming every C<key> into C<package/key>. This way you won't have collisions. If the key contains a C</>, it will not be transformed, and normal access takes place. Thus keys from other packages can be accessed explicitly if necessary.
+
+=head1 METHODS
 
 =head2 new
 
+This method creates a new private hash object.
 
 =head1 AUTHOR
 
@@ -66,7 +60,6 @@ Leon Timmermans, C<< <leont at cpan.org> >>
 Please report any bugs or feature requests to C<bug-class-private at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Class-Private>.  I will be notified, and then you'll
 automatically be notified of progress on your bug as I make changes.
-
 
 =head1 SUPPORT
 
@@ -97,16 +90,11 @@ L<http://search.cpan.org/dist/Class-Private>
 
 =back
 
-
-=head1 ACKNOWLEDGEMENTS
-
-
 =head1 COPYRIGHT & LICENSE
 
 Copyright 2009 Leon Timmermans, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
-
 
 =cut

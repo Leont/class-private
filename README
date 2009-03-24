@@ -1,16 +1,6 @@
 Class-Private
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
-
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
-
+This module provides some level of encapsulation around hashrefs for objects. It does this by transforming every C<key> into C<package/key>. This way you won't have collisions. If the key contains a C</>, it will not be transformed, and normal access takes place. Thus keys from other packages can be accessed explicitly if necessary.
 
 INSTALLATION
 
