@@ -1,10 +1,11 @@
 package Class::Private;
 
+use 5.010;
 use strict;
 use warnings;
 use base 'DynaLoader';
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 bootstrap Class::Private $VERSION;
 
@@ -18,7 +19,7 @@ Class::Private - Private hashes for your objects
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 
@@ -54,6 +55,10 @@ This method creates a new private hash object.
 =head1 AUTHOR
 
 Leon Timmermans, C<< <leont at cpan.org> >>
+
+=head1 DEPENDENCIES
+
+This module requires perl 5.10.
 
 =head1 BUGS
 

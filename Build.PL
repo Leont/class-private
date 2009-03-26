@@ -1,3 +1,4 @@
+use 5.010000;
 use strict;
 use warnings;
 use Module::Build;
@@ -13,9 +14,10 @@ my $builder = Module::Build->new(
 	build_requires => {
 		'Module::Build' => 0,
 		'Test::More'    => 0,
+		'Test::NoWarnings' => 0,
 	},
 	requires => {
-		perl            => 5.007003,
+		perl            => 5.010000,
 	},
     add_to_cleanup      => [ 'Class-Private-*' ],
     create_makefile_pl  => 'passthrough',
