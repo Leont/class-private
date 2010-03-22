@@ -3,11 +3,11 @@ package Class::Private;
 use 5.010;
 use strict;
 use warnings;
-use base 'DynaLoader';
+use XSLoader;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
-bootstrap Class::Private $VERSION;
+XSLoader::load('Class::Private', $VERSION);
 
 1;    # End of Class::Private
 
@@ -19,7 +19,7 @@ Class::Private - Private hashes for your objects
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
@@ -40,11 +40,11 @@ Version 0.02
 	$object->{foo} = 'quz';
 
 	# This will
-	$object->{'Your::Class/foo'} = 'quz';
+	$object->{'Your::Class::foo'} = 'quz';
 
 =head1 DESCRIPTION
 
-This module provides some level of encapsulation around hashrefs for objects. It does this by transforming every C<key> into C<package/key>. This way you won't have collisions. If the key contains a C</>, it will not be transformed, and normal access takes place. Thus keys from other packages can be accessed explicitly if necessary.
+This module provides some level of encapsulation around hashrefs for objects. It does this by transforming every C<key> into C<package::key>. This way you won't have collisions. If the key contains C<::>, it will not be transformed, and normal access takes place. Thus keys from other packages can be accessed explicitly if necessary.
 
 =head1 METHODS
 

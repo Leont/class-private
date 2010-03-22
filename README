@@ -1,6 +1,6 @@
 Class-Private
 
-This module provides some level of encapsulation around hashrefs for objects. It does this by transforming every C<key> into C<package/key>. This way you won't have collisions. If the key contains a C</>, it will not be transformed, and normal access takes place. Thus keys from other packages can be accessed explicitly if necessary.
+This module provides some level of encapsulation around hashrefs for objects. It does this by transforming every C<key> into C<package::key>. This way you won't have collisions. If the key contains C<::>, it will not be transformed, and normal access takes place. Thus keys from other packages can be accessed explicitly if necessary.
 
 INSTALLATION
 

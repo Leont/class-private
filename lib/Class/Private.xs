@@ -5,8 +5,8 @@
 
 I32 hash_name_filter(pTHX_ IV action, SV* val) {
 	MAGIC* magic = mg_find(val, PERL_MAGIC_uvar);
-	if (index(SvPV_nolen(magic->mg_obj), '/') == NULL)
-		magic->mg_obj = sv_2mortal(newSVpvf("%s/%s", CopSTASHPV(PL_curcop), SvPV_nolen(magic->mg_obj)));
+	if (strstr(SvPV_nolen(magic->mg_obj), "::") == NULL)
+		magic->mg_obj = sv_2mortal(newSVpvf("%s::%s", CopSTASHPV(PL_curcop), SvPV_nolen(magic->mg_obj)));
 	return 0;
 }
 
