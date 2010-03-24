@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use XSLoader;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 XSLoader::load('Class::Private', $VERSION);
 
@@ -97,7 +97,7 @@ L<http://search.cpan.org/dist/Class-Private>
 
 =head1 COPYRIGHT & LICENSE
 
-Copyright 2009 Leon Timmermans, all rights reserved.
+Copyright 2009, 2010 Leon Timmermans, all rights reserved.
 
 This program is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself.
