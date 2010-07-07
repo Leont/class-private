@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use XSLoader;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 XSLoader::load('Class::Private', $VERSION);
 
@@ -19,7 +19,7 @@ Class::Private - Private hashes for your objects
 
 =head1 VERSION
 
-Version 0.03
+Version 0.05
 
 =head1 SYNOPSIS
 

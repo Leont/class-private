@@ -1,5 +1,11 @@
 Revision history for Class-Private
 
+0.05    2010-07-07
+        Stylistic updates and simplifications
+
+0.04    2010-03-24
+        Fixed dependencies
+
 0.03    2010-03-22
         Changed the separator from '/' to '::'.
         Fixed a portability issue on Win32.
