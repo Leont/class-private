@@ -24,7 +24,7 @@ my $builder = Module::Build->new(
 	meta_merge => {
 		resources       => {
 			bugtracker  => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=Class-Private',
-			repository  => 'http://github.com/Leont/class-private/tree',
+			repository  => 'http://github.com/Leont/class-private',
 		},
 		keywords       => [ 'OO', 'privacy' ],
 	},
